@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  user-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: user_service_db
+      POSTGRES_USER: user_service_user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5433:5432"
+
+  order-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: order_service_db
+      POSTGRES_USER: order_service_user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5434:5432"
+
+  user-service:
+    build: ./user-service
+    depends_on:
+      - user-db
+    environment:
+      DATABASE_URL: postgresql://user_service_user:password@user-db:5432/user_service_db
+    ports:
+      - "8000:8000"
+
+  order-service:
+    build: ./order-service
+    depends_on:
+      - order-db
+      - user-service
+    environment:
+      DB_HOST: order-db
+    ports:
+      - "3000:3000"
+
+  api-gateway:
+    build: ./api-gateway
+    depends_on:
+      - user-service
+      - order-service
+    ports:
+      - "8081:8081"
