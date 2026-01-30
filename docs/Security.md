@@ -39,3 +39,12 @@ Microservices are like an airport. You have public areas, secure areas, staff-on
   - "Is this a valid phone number?" "Is this a real email?"
   - If not, throw it in the trash immediately.
 - **In Tech:** Validation libraries (like Joi or Zod). `email: Joi.string().email().required()`. If the user sends `DROP TABLE users`, the validator rejects it before it even reaches your database.
+
+### 5. Network Isolation (The Perimeter Fence)
+
+- **The Problem:** You have a TSA checkpoint (Gateway), but the back door to the "Order Department" is wide open. Anyone who finds the side street (Port 3000) can walk right in without a ticket.
+- **The Solution:** **A High Fence**.
+  - Remove all outside doors (Port Mappings) for internal buildings.
+  - The _only_ way in is through the main TSA Checkpoint.
+  - Once inside, staff (Services) can move between buildings using internal tunnels (Docker Network), but outsiders cannot.
+- **In Tech:** In `docker-compose.yml`, remove `ports: "3000:3000"` for internal services. Only expose the Gateway (`8081`). Internal services talk via Docker's internal DNS (`http://order-service:3000`).

@@ -21,25 +21,24 @@ services:
 
   user-service:
     build: ./user-service
+    restart: on-failure
     depends_on:
       - user-db
     environment:
       DATABASE_URL: postgresql://user_service_user:password@user-db:5432/user_service_db
-    ports:
-      - "8000:8000"
 
   order-service:
     build: ./order-service
+    restart: on-failure
     depends_on:
       - order-db
       - user-service
     environment:
       DB_HOST: order-db
-    ports:
-      - "3000:3000"
 
   api-gateway:
     build: ./api-gateway
+    restart: on-failure
     depends_on:
       - user-service
       - order-service
