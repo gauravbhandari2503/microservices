@@ -38,3 +38,14 @@ In a monolithic family, everyone writes in one big notebook on the kitchen table
   - **Read Replicas ( The Copies):** 5 copies of the book. Readers read the copies.
   - If the Author changes a page, they send a runner to update the 5 copies (milliseconds delay).
 - **In Tech:** Send all `INSERT/UPDATE` to the Master DB. Send all `SELECT` to Replica DBs. This scales your performance massively.
+
+## Industry Standard Tools & Services
+
+Here are some of the most popular tools and technologies used to implement these Database patterns:
+
+| Pattern / Category       | Best Tools / Technologies (Industry Standard)                 | Why?                                                                                                                                                  |
+| :----------------------- | :------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Relational DBs (SQL)** | **PostgreSQL**, **MySQL**, **Oracle**                         | ACID compliant, reliable, and standard for core business data (Orders, Users). **Postgres** is the modern favorite.                                   |
+| **NoSQL Databases**      | **MongoDB**, **Cassandra**, **DynamoDB**                      | High scalability for specific needs (Product Catalog, Activity Logs). **MongoDB** for flexible schemas; **Cassandra/Dynamo** for massive write scale. |
+| **DB Migrations**        | **Flyway**, **Liquibase**                                     | Essential for Version Control of your database schema. They run SQL scripts deterministically on every deployment.                                    |
+| **Read Replicas**        | **AWS RDS Read Replicas**, **Postgres Streaming Replication** | Built-in features of managed databases to offload generic read traffic from the primary writer node.                                                  |

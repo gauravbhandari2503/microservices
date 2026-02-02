@@ -48,3 +48,15 @@ Microservices are like an airport. You have public areas, secure areas, staff-on
   - The _only_ way in is through the main TSA Checkpoint.
   - Once inside, staff (Services) can move between buildings using internal tunnels (Docker Network), but outsiders cannot.
 - **In Tech:** In `docker-compose.yml`, remove `ports: "3000:3000"` for internal services. Only expose the Gateway (`8081`). Internal services talk via Docker's internal DNS (`http://order-service:3000`).
+
+## Industry Standard Tools & Services
+
+Here are some of the most popular tools and technologies used to implement these Security patterns:
+
+| Functionality                | Best Tools / Technologies (Industry Standard)           | Why?                                                                                                                 |
+| :--------------------------- | :------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------- |
+| **Authentication (Gateway)** | **Keycloak**, **Auth0**, **Okta**, **AWS Cognito**      | Centralized Identity Providers (IdP). They handle login pages, MFA, and issuing JWTs so your services don't have to. |
+| **Service-to-Service Auth**  | **Istio (mTLS)**, **Linkerd**, **Consul Connect**       | Automatically encrypts traffic between services and validates identity certificates (mTLS) without code changes.     |
+| **Secrets Management**       | **HashiCorp Vault**, **AWS Secrets Manager**            | Securely stores API keys and DB passwords. Apps retrieve them at runtime, keeping secrets out of Git.                |
+| **Input Validation**         | **Joi**, **Zod**, **Hibernate Validator** (Java)        | Libraries that define strict schemas for data. They reject invalid or malicious inputs (SQLi, XSS) early.            |
+| **Network Isolation**        | **Calico**, **Cilium**, **Kubernetes Network Policies** | Acts as a firewall inside your cluster. "Allow Order Service to talk to Payment Service, but block everything else." |

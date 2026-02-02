@@ -32,3 +32,14 @@ In a small village, you know everyone's house address. In a massive, growing cit
   - If Chef 1 says "Yes", keep him in the book.
   - If Chef 1 says nothing (or "I'm sick"), **cross him out** of the book immediately so no new customers go there.
 - **In Tech:** Every service has a `/health` endpoint that returns `200 OK`. The Registry pings it. If it fails, that IP is removed from the rotation instantly.
+
+## Industry Standard Tools & Services
+
+Here are some of the most popular tools and technologies used to implement these patterns:
+
+| Functionality               | Best Tools / Technologies (Industry Standard)            | Why?                                                                                                                 |
+| :-------------------------- | :------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------- |
+| **Service Discovery**       | **Consul**, **Eureka** (Spring), **Kubernetes DNS**      | **Consul** is a general-purpose registry. **K8s DNS** handles discovery natively for containers without extra tools. |
+| **Load Balancing** (Server) | **Nginx**, **HAProxy**, **AWS ALB**, **Google Cloud LB** | The "Receptionist" at the front door. Handles high traffic and SSL termination before it hits your services.         |
+| **Load Balancing** (Client) | **Spring Cloud LoadBalancer**, **gRPC Client**           | The service itself decides which instance to call (e.g., "I'll call instance #3 this time"). Saves a network hop.    |
+| **Health Checks**           | **Spring Boot Actuator**, **K8s Probes**                 | **Actuator** exposes `/actuator/health`. **K8s Probes** (Liveness/Readiness) restart containers if they freeze.      |

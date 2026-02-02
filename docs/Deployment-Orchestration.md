@@ -43,3 +43,14 @@ Moving your code from your laptop to the real world is the hardest part. It's th
   - Traffic High? The system automatically adds more servers.
   - Traffic Low? The system deletes servers to save money.
 - **In Tech:** Horizontal Pod Autoscaling (HPA) in Kubernetes. "If CPU > 70%, add another container."
+
+## Industry Standard Tools & Services
+
+Here are some of the most popular tools and technologies used to implement these Deployment patterns:
+
+| Functionality               | Best Tools / Technologies (Industry Standard)              | Why?                                                                                                                                    |
+| :-------------------------- | :--------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
+| **Container Orchestration** | **Kubernetes**, **Amazon EKS**, **Google GKE**             | The operating system for the cloud. Manages lifecycle, scheduling, health, and failover of containers at scale.                         |
+| **CI/CD Pipelines**         | **GitHub Actions**, **GitLab CI**, **Jenkins**, **ArgoCD** | Automates building and deploying. **ArgoCD** is the standard for **GitOps** (syncing Git config to K8s).                                |
+| **Blue-Green / Canary**     | **Argo Rollouts**, **Flagger**, **Linkerd / Istio**        | Specialized controllers that manage complex traffic shifting (e.g., "send 5% to new version") safely.                                   |
+| **Auto-Scaling**            | **K8s HPA**, **KEDA**, **Cluster Autoscaler**              | **HPA** scales pods based on CPU. **KEDA** scales based on events (e.g., Queue size). **Cluster Autoscaler** adds real servers (Nodes). |

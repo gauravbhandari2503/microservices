@@ -39,3 +39,14 @@ When your car breaks down, you need tools to know _what_ happened and _where_. I
   - Order Service passes it to Payment Service.
   - Every log line includes `[req-123xyz]`.
 - **In Tech:** You copy `req-123xyz` into your log tool, and it shows you the entire story of that specific user request across the whole system.
+
+## Industry Standard Tools & Services
+
+Here are some of the most popular tools and technologies used to implement these Observability patterns:
+
+| Functionality            | Best Tools / Technologies (Industry Standard)              | Why?                                                                                                                               |
+| :----------------------- | :--------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------- |
+| **Distributed Tracing**  | **Jaeger**, **Zipkin**, **Datadog APM**, **OpenTelemetry** | **Jaeger/Zipkin** visualize the path of a request across services. **OpenTelemetry** is the new standard for collecting this data. |
+| **Centralized Logging**  | **ELK Stack**, **Grafana Loki**, **Splunk**, **Fluentd**   | **ELK** (Elasticsearch) is powerful for searching text; **Loki** is cheaper and integrates best with Grafana.                      |
+| **Metrics & Monitoring** | **Prometheus**, **Grafana**, **Datadog**                   | **Prometheus** scrapes numerical data (CPU, Memory, Request Count); **Grafana** visualizes it in dashboards.                       |
+| **Correlation IDs**      | **Native in Frameworks** (e.g., Spring Cloud Sleuth)       | Usually handled by libraries or the API Gateway (Kong/Nginx) injecting a `X-Request-ID` header.                                    |

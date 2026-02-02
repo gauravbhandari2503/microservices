@@ -44,3 +44,15 @@ Building software is like building a car. You don't just assemble the whole car 
   - Go to production and turn off the Database. Does the system show "Maintenance Mode" or does it crash responsibly?
   - Add 5 seconds of latency. Do timeouts work?
 - **In Tech:** **Netflix Chaos Monkey**. It randomly kills servers in production to force engineers to build resilient systems.
+
+## Industry Standard Tools & Services
+
+Here are some of the most popular tools and technologies used to implement these Testing Strategies:
+
+| Functionality           | Best Tools / Technologies (Industry Standard)  | Why?                                                                                                                 |
+| :---------------------- | :--------------------------------------------- | :------------------------------------------------------------------------------------------------------------------- |
+| **Unit Testing**        | **Jest**, **JUnit**, **Mocha**, **Pytest**     | Fast, isolated tests for individual functions. **Jest** is the standard for JS/TS; **JUnit** for Java.               |
+| **Integration Testing** | **Testcontainers**, **Postman**, **Supertest** | **Testcontainers** spins up real Docker DBs for tests. **Postman** tests API endpoints.                              |
+| **Contract Testing**    | **Pact**, **Spring Cloud Contract**            | Ensures Service A and Service B agree on the API format (JSON schema) before deploying, preventing breaking changes. |
+| **E2E Testing**         | **Playwright**, **Cypress**, **Selenium**      | Simulates a real user clicking buttons in a browser. **Playwright** is the modern, fast alternative to Selenium.     |
+| **Chaos Engineering**   | **Chaos Monkey**, **Gremlin**, **Chaos Mesh**  | Intentionally breaks things (kills pods, adds latency) in production to verify the system recovers automatically.    |

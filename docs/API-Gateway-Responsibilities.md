@@ -38,3 +38,14 @@ The API Gateway is not just a door; it's the intelligent Front Desk of a high-en
   - New guests go to "Wing 2" (v2). It has better features.
   - Eventually, you close Wing 1 when nobody goes there anymore.
 - **In Tech:** `/v1/users` (returns `name: "John"`) vs `/v2/users` (returns `firstName: "John", lastName: "Doe"`). You support both simultaneously so you don't break existing apps.
+
+## Industry Standard Tools & Services
+
+Here are some of the most popular API Gateway services used by large technology companies to handle these responsibilities:
+
+| Functionality              | Best Services / Tools (Industry Standard)              | Why?                                                                                                                |
+| :------------------------- | :----------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------ |
+| **Rate Limiting**          | **Nginx**, **Redis**, **Kong**, **AWS API Gateway**    | High-performance counting and blocking. Nginx/Kong are standard for raw throughput; Redis for distributed counters. |
+| **Request Transformation** | **Kong (Plugins)**, **Apigee**, **MuleSoft**           | Advanced mediation capabilities to transform XML<->JSON, SOAP<->REST, etc.                                          |
+| **Caching**                | **Redis**, **Varnish**, **AWS CloudFront**             | **Redis** is best for dynamic data caching; **CloudFront/Varnish** for static content or edge caching.              |
+| **API Versioning**         | **Kong**, **AWS API Gateway**, **Ingress Controllers** | Native routing support (path-based `/v1`, header-based) to seamlessly direct traffic to different backend versions. |

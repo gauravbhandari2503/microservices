@@ -37,3 +37,14 @@ In a distributed system, failure is inevitable. Resilience patterns prevent a si
   - 10 threads for "Payment".
   - 10 threads for "User Profile".
   - If "Payment" gets stuck and uses all 10 threads, "User Profile" still works perfectly because it has its own dedicated threads.
+
+## Industry Standard Tools & Services
+
+Here are some of the most popular tools and technologies used to implement these Resilience patterns:
+
+| Functionality       | Best Tools / Technologies (Industry Standard)             | Why?                                                                                                                   |
+| :------------------ | :-------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------- |
+| **Circuit Breaker** | **Resilience4j**, **Hystrix** (Legacy), **Istio**         | **Resilience4j** is the modern Java standard. **Istio** handles this at the network layer (Mesh) without code changes. |
+| **Retry / Backoff** | **Resilience4j**, **Spring Retry**, **Polly** (.NET)      | Automatically retries failed requests with customizable backoff strategies (e.g., wait 1s, then 2s, then 4s).          |
+| **Timeouts**        | **Native HTTP Clients** (OkHttp, Axios), **Resilience4j** | Standardize constraints: "If no response in 2s, fail fast." Prevents threads from hanging forever.                     |
+| **Bulkhead**        | **Resilience4j**, **K8s Resource Quotas**, **Hystrix**    | Isolates failures. If one service is overloaded, it doesn't consume all threads/memory of the caller.                  |
