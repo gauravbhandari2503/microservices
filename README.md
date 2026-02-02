@@ -61,28 +61,43 @@ The easiest way to run the application is using Docker Compose.
 | `GET`  | `/users/:id` | Get user details     | N/A                                             |
 | `POST` | `/orders`    | Create a new order   | `{"user_id": 1, "product_name": "Laptop"}`      |
 
-### Testing with CURL
+### Testing Guide (Authenticated Flow)
 
-**Check Health**:
-
-```bash
-curl http://localhost:8081/health
-```
-
-**Create a User**:
+#### 1. Register a New User
 
 ```bash
 curl -X POST http://localhost:8081/users \
   -H "Content-Type: application/json" \
-  -d '{"name": "Alice", "email": "alice@example.com"}'
+  -d '{"name": "Secure User", "email": "secure@example.com", "password": "securePass123"}'
 ```
 
-**Create an Order** (Requires valid `user_id`):
+#### 2. Login to Get Token
+
+```bash
+curl -X POST http://localhost:8081/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email": "secure@example.com", "password": "securePass123"}'
+```
+
+**Response should contain:** `{"token": "..."}`
+
+#### 3. Access Protected Route (Orders)
+
+Replace `<TOKEN>` with the token from Step 2.
 
 ```bash
 curl -X POST http://localhost:8081/orders \
   -H "Content-Type: application/json" \
-  -d '{"user_id": 1, "product_name": "Headphones"}'
+  -H "Authorization: Bearer <TOKEN>" \
+  -d '{"user_id": 1, "product_name": "Secure Book"}'
+```
+
+#### 4. Verify Service Isolation
+
+This should FAIL (Connection Refused) because direct access is blocked.
+
+```bash
+curl http://localhost:8000/users/1
 ```
 
 ## Local Development (Optional)
